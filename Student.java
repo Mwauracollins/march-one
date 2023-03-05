@@ -7,6 +7,7 @@ public class Student {
     private String program;
     private String dateOfBirth;
 
+    //constructor for Student
     public Student(String regNo, String name, String program, String dateOfBirth) {
         this.regNo = regNo;
         this.name = name;
@@ -14,55 +15,64 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getRegNo(){
+        return regNo;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getProgram(){
+        return program;
+    }
+
+    public String getDateOfBirth(){
+        return dateOfBirth;
+    }
+
     public String toString() {
         return regNo + ", " + name + ", " + program + ", " + dateOfBirth;
-    }
+    }//overriding of the getObject() and toString() methods
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter student's registration number:");
-        String regNo = input.nextLine();
+        System.out.println("Enter student's registration no:");
+            String regNo = input.nextLine();
 
         System.out.println("Enter student's name:");
-        String name = input.nextLine();
+            String name = input.nextLine();
 
         System.out.println("Enter student's program:");
-        String program = input.nextLine();
+            String program = input.nextLine();
 
         System.out.println("Enter student's date of birth (dd.mm.yyyy):");
-        String dateOfBirth = input.nextLine();
+            String dateOfBirth = input.nextLine();
 
+
+            //creating an object Student with the inputs as the arguments and save to file
         Student student = new Student(regNo, name, program, dateOfBirth);
-        writeToFile("student.txt", student);
+            writeToFile("student.txt", student);
 
-        System.out.println("Student details saved to file.");
+            System.out.println("Student's details saved");
 
-        System.out.println("Enter program to search for:");
-        String searchProgram = input.nextLine();
-        List<Student> students = readFromFile("student.txt");
-        List<Student> results = searchByProgram(students, searchProgram);
-
-        if (results.size() == 0) {
-            System.out.println("No students found for program " + searchProgram);
-        } else {
-            System.out.println("Students in program " + searchProgram + ":");
-            for (Student s : results) {
-                System.out.println(s.toString());
-            }
-        }
     }
 
+    //this method takes the arguments and writes to file using the filewriter
+    //catches an exception if error occurs
     public static void writeToFile(String fileName, Student student) {
         try {
             FileWriter writer = new FileWriter(fileName, true);
             writer.write(student.toString() + "\n");
             writer.close();
         } catch (IOException e) {
-            System.out.println("An error occurred while writing to file.");
+            System.out.println("An error occurred while writing.");
             e.printStackTrace();
         }
     }
+
+    //the readFromFile() method takes file name as parameter and reads the details of student
 
     public static List<Student> readFromFile(String fileName) {
         List<Student> students = new ArrayList<Student>();
@@ -84,15 +94,5 @@ public class Student {
             e.printStackTrace();
         }
         return students;
-    }
-
-    public static List<Student> searchByProgram(List<Student> students, String program) {
-        List<Student> results = new ArrayList<Student>();
-        for (Student s : students) {
-            if (s.program.equalsIgnoreCase(program)) {
-                results.add(s);
-            }
-        }
-        return results;
     }
 }
