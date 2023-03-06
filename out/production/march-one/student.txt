@@ -1,0 +1,4 @@
+EB1.56094.21, Collins Mwaura, Computer Science, 01.01.2002
+EB1.56061.21, Victor Mutugi, Computer Science, 1.1.2002
+EB3.57036.21, Jane Doe, Applied Computer Science, 29.02.2000
+EB7.46723.20, Michelle Monroe, Maths and Stat, 11.09.2001
